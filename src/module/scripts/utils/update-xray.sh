@@ -24,7 +24,7 @@ log "========== 开始更新 Xray =========="
 
 # 获取最新版本
 log "获取最新版本..."
-VERSION=$(curl -sS "https://github.com/${REPO}/releases" |  grep -E "https://github.com/${REPO}/releases/tag/" |  head -1 |  sed -n 's/.*tag\/\([^"]*\)".*/\1/p')
+VERSION=$(curl -s "https://github.com/${REPO}/releases" |  grep -E "https://github.com/${REPO}/releases/tag/" |  head -1 |  sed -n 's/.*tag\/\([^"]*\)".*/\1/p')
 
 if [ -z "$VERSION" ]; then
   log "错误: 无法获取版本信息"

@@ -44,7 +44,7 @@ export class StatusService {
     try {
       // 使用 pidof 检测 xray 进程是否运行
       const pidOutput = await KSU.exec(
-        `pidof -s /data/adb/modules/netproxy/bin/xray 2>/dev/null || echo`,
+        `pidof -s xray || true`,
       );
       const isRunning = pidOutput.trim() !== "";
       const status = isRunning ? "running" : "stopped";
@@ -66,7 +66,7 @@ export class StatusService {
     // 后台执行服务脚本，不等待完成 (fire-and-forget)
     KSU.spawn("su", [
       "-c",
-      `sh ${KSU.MODULE_PATH}/scripts/core/service.sh start >/dev/null 2>&1 &`,
+      `sh -c "${KSU.MODULE_PATH}/scripts/core/service.sh start" >/dev/null 2>&1 || true`,
     ]);
     // 轮询等待服务启动
     return await this.pollServiceStatus("running", 15000);
@@ -77,7 +77,7 @@ export class StatusService {
     // 后台执行服务脚本，不等待完成 (fire-and-forget)
     KSU.spawn("su", [
       "-c",
-      `sh ${KSU.MODULE_PATH}/scripts/core/service.sh stop >/dev/null 2>&1 &`,
+      `sh -c "${KSU.MODULE_PATH}/scripts/core/service.sh stop" >/dev/null 2>&1 || true`,
     ]);
     // 轮询等待服务停止
     return await this.pollServiceStatus("stopped", 10000);

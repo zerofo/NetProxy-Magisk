@@ -26,6 +26,13 @@
 
     <!-- 预先应用主题并设置遮罩颜色 -->
     <script>
+      document.addEventListener('backbutton', () => {
+          if (history.length > 1) {
+              history.back(); // 在 WebView 内返回上一页
+          } else {
+              ksu.finish();
+          }
+      });
       (function () {
         try {
           var savedTheme = localStorage.getItem("theme") || "auto";
@@ -783,6 +790,12 @@
             </mdui-list>
 
             <div style="padding: 16px; text-align: center">
+              <mdui-button
+                slot="trigger"
+                icon="update"
+                id="check-update-btn"
+                data-i18n="common.update-core"
+                >更新xray-core(含pre-release)</mdui-button> 
               <mdui-button
                 variant="outlined"
                 id="module-back-btn"

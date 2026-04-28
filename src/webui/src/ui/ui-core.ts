@@ -337,9 +337,28 @@ export class UI {
 
         setTimeout(async () => {
           try {
+            const serviceStatus: any = await StatusService.getStatus();
+            if (serviceStatus.status !== "stopped") {
+              const stopResult = await StatusService.stopService();
+              if (!stopResult) {                
+                toast(I18nService.t("status.service_stop_timeout"));
+                checkUpdateBtn.disabled = false;
+                checkUpdateBtn.loading = false;
+                return;
+              }
+            }
+
+
             const result: any = await SettingsService.updateXray();
 
             if (result.success) {
+              const startResult = await StatusService.startService();
+              if (!startResult) {
+                toast(I18nService.t("status.service_start_timeout"));
+                checkUpdateBtn.disabled = false;
+                checkUpdateBtn.loading = false;
+                return;
+              }
               toast(result.message);
               if (!result.isLatest) {
                 setTimeout(() => this.statusPage.update(), 1500);

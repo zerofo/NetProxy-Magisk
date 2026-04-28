@@ -195,7 +195,7 @@ const urPK: Record<string, string> = {
   "settings.dns": "DNS کی ترتیبات",
   "settings.logs": "لاگز",
   "common.back_settings": "ترتیبات پر واپس جائیں",
-
+  "common.update-core": "xray-core کو اپ ڈیٹ کریں (pre-release شامل ہے)",
   // UID Page Extra
   "uid.app_settings": "ایپ کی ترتیبات",
   "uid.mode_off": "بند",

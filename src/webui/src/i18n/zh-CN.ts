@@ -204,7 +204,7 @@ const zhCN: Record<string, string> = {
   "settings.dns": "DNS 设置",
   "settings.logs": "日志",
   "common.back_settings": "返回设置",
-
+  "common.update-core": "更新 xray-core (包含 pre-release 版本)",
   // UID Page Extra
   "uid.app_settings": "分应用设置",
   "uid.mode_off": "关闭",

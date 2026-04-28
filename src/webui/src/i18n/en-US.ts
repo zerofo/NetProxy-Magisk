@@ -208,7 +208,7 @@ const enUS: Record<string, string> = {
   "settings.dns": "DNS Settings",
   "settings.logs": "Logs",
   "common.back_settings": "Back to Settings",
-
+  "common.update-core": "Update xray-core (includes pre-release)",
   // UID Page Extra
   "uid.app_settings": "App Settings",
   "uid.mode_off": "Off",

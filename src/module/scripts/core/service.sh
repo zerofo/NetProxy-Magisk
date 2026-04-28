@@ -46,7 +46,7 @@ get_pid() {
 do_start() {
   log "INFO" "========== 开始启动 Xray 服务 =========="
 
-  local running_pid=$(get_pid)
+  local running_pid=$(pidof -s xray || true)
   if [ -n "$running_pid" ]; then
     log "WARN" "Xray 已在运行中 (PID: $running_pid)"
     return 0
@@ -115,7 +115,7 @@ do_stop() {
 
   # 终止 Xray 进程
   local pid
-  pid=$(get_pid)
+  pid=$(pidof -s xray || true)
 
   if [ -z "$pid" ]; then
     log "INFO" "未发现运行中的 Xray 进程"
@@ -158,7 +158,7 @@ do_restart() {
 #######################################
 do_status() {
   local pid
-  pid=$(get_pid)
+  pid=$(pidof -s xray || true)
 
   if [ -n "$pid" ]; then
     echo "Xray 运行中 (PID: $pid)"

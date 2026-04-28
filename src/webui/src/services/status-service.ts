@@ -66,7 +66,7 @@ export class StatusService {
     // 后台执行服务脚本，不等待完成 (fire-and-forget)
     KSU.spawn("su", [
       "-c",
-      `sh -c "${KSU.MODULE_PATH}/scripts/core/service.sh start" >/dev/null 2>&1 || true`,
+      `sh ${KSU.MODULE_PATH}/scripts/core/service.sh start >/dev/null 2>&1 || true`,
     ]);
     // 轮询等待服务启动
     return await this.pollServiceStatus("running", 15000);
@@ -77,7 +77,7 @@ export class StatusService {
     // 后台执行服务脚本，不等待完成 (fire-and-forget)
     KSU.spawn("su", [
       "-c",
-      `sh -c "${KSU.MODULE_PATH}/scripts/core/service.sh stop" >/dev/null 2>&1 || true`,
+      `sh ${KSU.MODULE_PATH}/scripts/core/service.sh stop >/dev/null 2>&1 || true`,
     ]);
     // 轮询等待服务停止
     return await this.pollServiceStatus("stopped", 10000);
